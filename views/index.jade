@@ -3,12 +3,13 @@ extends layout
 
 block content
 	h1= title
+	h3= inst
 	a(href='/straightfirst') NEXT EXAMPLE
 	p Welcome to #{title}
-	p A general rule at a four way stop is that the car that gets there first goes first.
-	p This is especially true for left-hand turns since the intersection must be clear.
-	p In this example the driver in the car of lane 5 would wait for the driver in lane 1 to complete their right turn, before making a left.
-	p The only case this would not be true is when a driver in lane 3 clearly had their right-hand blinker on.
+	p A general first rule at a four way stop is that the car that gets there first goes first.
+	p This is especially true for left-hand turns since the intersection must be clear. An attentive driver will be sure to let the intersection clear before proceeding.
+	p In these examples the viper is going to be making the left-hand turns. Here they would wait for the driver in lane 1 to complete their right turn, before making a left.
+	p A case where waiting may not make sense (and may frustrate drivers behind you) is when a driver in lane 3 clearly had their right-hand blinker on. However not all intersections have enough room for this maneuver, the driver must decide if it is right. 
 
 
 	script(src='/javascripts/sketch.js')
