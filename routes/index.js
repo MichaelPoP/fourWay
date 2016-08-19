@@ -22,4 +22,16 @@ router.get('/straightfirst', function(req, res, next) {
   res.render('straightfirst', { title: 'Straight First' });
 });
 
+router.get('/pedestrian', function(req, res, next) {
+  res.render('pedestrian', { title: 'Pedestrian' });
+});
+
+router.get('/emergency', function(req, res, next) {
+  res.render('emergency', { title: 'Emergency' });
+});
+
+router.get('/emergency2', function(req, res, next) {
+  res.render('emergency2', { title: 'Emergency Motorcade' });
+});
+
 module.exports = router;
