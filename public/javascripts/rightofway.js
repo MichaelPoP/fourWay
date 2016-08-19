@@ -1,10 +1,12 @@
 var blockTL, blockTR, blockBL, blockBR,stage1,stage2,stage3,stage4,stage5,stage6,stage7,startTime,passedTime;
 // var example = 1;
-var s,car,audi;
+var s,car,audi,taxi;
 
 function preload(){
+  //http://unluckystudio.com/support-free-game-art/
   audi = loadImage("../images/sprites/Audi.png");
   viper = loadImage("../images/sprites/Black_viper.png");
+  taxiImage = loadImage("../images/sprites/taxi.png")
 }
 
 function setup() {
@@ -21,6 +23,11 @@ function setup() {
   car.addImage(viper);
   car.scale = 0.5;
   // noLoop();
+
+  taxi = createSprite(600,250,40,40);
+  taxi.addImage(taxiImage);
+  taxi.scale = 0.5;
+  taxi.rotation = 270;
 }
 
 
@@ -68,6 +75,8 @@ function draw() {
     // s.velocity.x = 0;
     // s.velocity.y = 1;
     s.setVelocity(0,1);
+    car.setVelocity(0,-1);
+    taxi.setVelocity(-1,0);
   }
 
 
@@ -75,14 +84,14 @@ function draw() {
   // console.log(s.position.y);
   if(s.position.y === 160){
 
-    textAlign(CENTER);
+    // textAlign(CENTER);
     textSize(18);
 
 
-    text("The red car has reached the intersection first, \n so they will go first",270,250);
-
+    text("When mulitple cars arrive simultaneously.",200,340);
+    // text("But the striped car knows it is turning left, \n across traffic, so it will wait..",270,250);
     s.setVelocity(0,0);
-    car.setVelocity(0,-1);
+
 
 
     timePassed = millis() - $start;
@@ -94,8 +103,9 @@ function draw() {
 
   } 
 
-  if(car.position.y === 440){
+  if(car.position.y === 440 || taxi.position.x === 440){
     car.setVelocity(0,0);
+    taxi.setVelocity(0,0);
   }
 
   if(s.position.y === 240){
@@ -104,7 +114,8 @@ function draw() {
     s.setVelocity(-1,0);
     s.velocity.y = 0;
     // s.setSpeed(0,90);
-
+    textSize(16);
+    text("The car farthest to the right goes first.",170,350);
     s.velocity.x = -1;
 
     // }, 10);
@@ -116,8 +127,26 @@ function draw() {
 
   if(s.removed === true) {
     // console.log("its gone");
-    car.velocity.y = -1;
+    taxi.velocity.x = -1;
+    // text("Then the taxi.",170,350);
   } 
+
+  if(taxi.position.x === 360){
+    taxi.rotation = 0;
+    taxi.velocity.y = -1;
+    taxi.velocity.x = 0;
+  }
+
+  if(taxi.position.y < 0){
+    taxi.remove();
+    textSize(21);
+    textAlign(CENTER);
+    text("This is the law, but it might not always be followed!",300,280);
+  }
+
+  if(taxi.removed === true) {
+    car.velocity.y = -1;
+  }
 console.log(car.position.y);
 
   if (car.position.y === 240){
@@ -132,83 +161,4 @@ console.log(car.position.y);
 
 
 
-
-
-
-
-
-// function keyPressed() {
-//   if(keyCode == ENTER){
-//     // loop();
-//     // startTraffic();
-//     example1(s);
-
-//   } else if (keyCode == RIGHT_ARROW) {
-//     // example1();
-
-//     var s = createSprite(250,0,40,40);
-//     s.velocity.x = 0;
-//     s.velocity.y = 3;
-
-//   }
-
-
-
-// function example1() {
-//   s.velocity.x = 0;
-//   s.velocity.y = 1;
-
-//   // passedTime = startTime - millis();
-//   console.log(s.position.y);
-//   if(s.position.y === 250){
-//     // start = millis();
-//     s.velocity.x = -1;
-//     s.velocity.y = 0;
-//   }
-// }
-
-// // function example1() {
-// //  var a = createSprite(250,0,40,40);
-// //  a.velocity.y = 2;
-// //   a.velocity.x = 0;
-// //   console.log(a.position.x, height);
-// //   if(a.position.x > height/2){
-// //     a.velocity.y = 0;
-
-// //   }
-
-// // }
-
-
-
-
-
-
-
-
-
-
-
-// function getRandomCar() {
-//   var posArr = [[0,250,8],[0,350,7],[250,600,6],[600,350,4],[600,250,3],[350,0,2],[250,0,1]];
-//   var pathArr = ['left','center','right'];
-//   var randPos = random(posArr);
-//   var randPat = random(pathArr);
-
-//   var car = randPos.push(randPat);
-//   // console.log(car);
-//   return car;
-
-
-// }
-
-// function startTraffic() {
-//   var c = getRandomCar();
-//   var x = c[0],y = c[1], m = c[2];
-//   var s = createSprite(x, y, 40, 40);
-//   s.velocity.x = random(-5, 5);
-//   s.velocity.y = random(-5, 5);
-
-// }
-// }
 

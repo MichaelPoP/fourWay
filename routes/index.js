@@ -7,7 +7,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { atitle: 'About Page' });
+  res.render('about', { title: 'About Page' });
+});
+
+router.get('/twoeven', function(req, res, next) {
+  res.render('twoeven', { title: 'Two Even' });
+});
+
+router.get('/rightofway', function(req, res, next) {
+  res.render('rightofway', { title: 'Right of Way' });
+});
+
+router.get('/straightfirst', function(req, res, next) {
+  res.render('straightfirst', { title: 'Straight First' });
 });
 
 module.exports = router;

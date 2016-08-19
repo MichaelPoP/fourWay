@@ -60,6 +60,8 @@ function draw() {
   text("7",50,350);
   text("8",50,270);
 
+  textSize(20);
+  // text("This time the two cars arrive simultaneously. ",140,250);
 
 //THE ANIMATION SEQUENCE
   var start;
@@ -68,6 +70,8 @@ function draw() {
     // s.velocity.x = 0;
     // s.velocity.y = 1;
     s.setVelocity(0,1);
+    car.setVelocity(0,-1);
+
   }
 
 
@@ -79,10 +83,10 @@ function draw() {
     textSize(18);
 
 
-    text("The red car has reached the intersection first, \n so they will go first",270,250);
-
+    text("This time the two cars arrive simultaneously. ",270,250);
+    // text("But the striped car knows it is turning left, \n across traffic, so it will wait..",270,250);
     s.setVelocity(0,0);
-    car.setVelocity(0,-1);
+
 
 
     timePassed = millis() - $start;
@@ -96,119 +100,33 @@ function draw() {
 
   if(car.position.y === 440){
     car.setVelocity(0,0);
+
   }
 
-  if(s.position.y === 240){
-    // setTimeout(function(){
-    s.rotation = 270;
-    s.setVelocity(-1,0);
-    s.velocity.y = 0;
-    // s.setSpeed(0,90);
+  if(s.position.y === 400){
+    car.velocity.y = -1;
 
-    s.velocity.x = -1;
-
-    // }, 10);
   } 
 // console.log(width, s.position.x, s.removed);
-  if(s.position.x < 0) {
+  if(s.position.y > 600) {
     s.remove();
   }
 
   if(s.removed === true) {
     // console.log("its gone");
-    car.velocity.y = -1;
+    textSize(18);
+    text("Once the red car passes the viper is free to go.",200,350);
   } 
 console.log(car.position.y);
 
   if (car.position.y === 240){
     car.rotation = 270;
     car.velocity.y = 0;
-    car.velocity.x = -1;
+    car.velocity.x = -2;
   }
 
       drawSprites();
 
 }
 
-
-
-
-
-
-
-
-// function keyPressed() {
-//   if(keyCode == ENTER){
-//     // loop();
-//     // startTraffic();
-//     example1(s);
-
-//   } else if (keyCode == RIGHT_ARROW) {
-//     // example1();
-
-//     var s = createSprite(250,0,40,40);
-//     s.velocity.x = 0;
-//     s.velocity.y = 3;
-
-//   }
-
-
-
-// function example1() {
-//   s.velocity.x = 0;
-//   s.velocity.y = 1;
-
-//   // passedTime = startTime - millis();
-//   console.log(s.position.y);
-//   if(s.position.y === 250){
-//     // start = millis();
-//     s.velocity.x = -1;
-//     s.velocity.y = 0;
-//   }
-// }
-
-// // function example1() {
-// //  var a = createSprite(250,0,40,40);
-// //  a.velocity.y = 2;
-// //   a.velocity.x = 0;
-// //   console.log(a.position.x, height);
-// //   if(a.position.x > height/2){
-// //     a.velocity.y = 0;
-
-// //   }
-
-// // }
-
-
-
-
-
-
-
-
-
-
-
-// function getRandomCar() {
-//   var posArr = [[0,250,8],[0,350,7],[250,600,6],[600,350,4],[600,250,3],[350,0,2],[250,0,1]];
-//   var pathArr = ['left','center','right'];
-//   var randPos = random(posArr);
-//   var randPat = random(pathArr);
-
-//   var car = randPos.push(randPat);
-//   // console.log(car);
-//   return car;
-
-
-// }
-
-// function startTraffic() {
-//   var c = getRandomCar();
-//   var x = c[0],y = c[1], m = c[2];
-//   var s = createSprite(x, y, 40, 40);
-//   s.velocity.x = random(-5, 5);
-//   s.velocity.y = random(-5, 5);
-
-// }
-// }
 
